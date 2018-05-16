@@ -1,0 +1,8 @@
+.spelling-term::after {
+  content: '-';
+  padding: 0 0.5em;
+}
+
+.spelling-term:last-child::after {
+  content: '';
+}

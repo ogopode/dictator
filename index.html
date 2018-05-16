@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="pv0 mv0 sans-serif">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dictator - Spelling with dictation guidelines</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="pv0 mv0">
+  <header class="pv2 bg-light-gray">
+    <h1>Dictator</h1>
+  </header>
+  <main class="pv4 h100" id="app">
+    <section class="input flex pv4">
+      <form action="" class="w-100 ma flex flex-column items-center">
+        <label class="f3 w5 pv1" for="the-input">Your input</label>
+        <input class="f3 w5" type="text" name="input" id="the-input" placeholder="Enter your input here" v-model="input">
+      </form>
+    </section>
+    <section class="output bt flex pv4">
+      <div v-for="term in outputTerms" class="ph2">
+        {{term}}
+      </div>
+    </section>
+  </main>
+  <footer class="pv1 tc white bg-gray">
+    &copy; Jan Schnitzler
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var lookup = {
+      a: [' Anton', 'Anna', 'Anton', 'Alfa'],
+      ä: ['Ärger', 'Äsch', '	Ärger', '...'],
+      b: ['Berta', 'Berta', 'Berta', 'Bravo'],
+      c: ['Cäsar', 'Cäsar', 'Cäsar', 'Charlie'],
+      ch: ['Charlotte', '...', '...', '...'],
+      d: ['Dora', 'Daniel', 'Dora', 'Delta'],
+      e: ['Emil', 'Emil', 'Emil', 'Echo'],
+      f: ['Friedrich', 'Friedrich', 'Friedrich', 'Foxtrot'],
+      g: ['Gustav', 'Gustav', 'Gustav', 'Golf'],
+      h: ['Heinrich', 'Heinrich', 'Heinrich', 'Hotel'],
+      i: ['Ida', 'Ida', 'Ida', 'India'],
+      j: ['Julius', 'Jakob', 'Julius', 'Juliett'],
+      k: ['Kaufmann', 'Kaiser', 'Konrad', 'Kilo'],
+      l: ['Ludwig', 'Leopold', 'Ludwig', 'Lima'],
+      m: ['Martha', 'Marie', 'Martha', 'Mike'],
+      n: ['Nordpol', 'Niklaus', 'Nordpol', 'November'],
+      o: ['Otto', 'Otto', 'Otto', 'Oscar'],
+      ö: ['Ökonom', 'Örlikon', 'Österreich', '...'],
+      p: ['Paula', 'Peter', 'Paula', 'Papa'],
+      q: ['Quelle', 'Quasi', 'Quelle', 'Quebec'],
+      r: ['Richard', 'Rosa', 'Richard', 'Romeo'],
+      s: ['Samuel', 'Sophie', 'Siegfried', 'Sierra'],
+      sch: ['Schule', '...', 'Schule', '...'],
+      ß: ['Eszett', '...', 'scharfes S', '...'],
+      t: ['Theodor', 'Theodor', 'Theodor', 'Tango'],
+      u: ['Ulrich', 'Ulrich', 'Ulrich', 'Uniform'],
+      ü: ['Übermut', 'Übermut', 'Übel', '...'],
+      v: ['Viktor', 'Viktor', 'Viktor', 'Victor'],
+      w: ['Wilhelm', 'Wilhelm', 'Wilhelm', 'Whiskey'],
+      x: ['Xanthippe', 'Xaver', 'Xaver', 'X-Ray'],
+      y: ['Ypsilon', 'Yverdon', 'Ypsilon', 'Yankee'],
+      z: ['Zacharias', 'Zürich', 'Zürich', 'Zulu'],
+      " ": ['Leerzeichen', '-', '-', '-']
+    }
+    var app = new Vue({
+      el: '#app',
+      data: function () {
+        return {
+          input: ''
+        };
+      },
+      computed: {
+        outputTerms: function () {
+          return this.input.split('').map(function (item) {
+            return lookup[item.toLowerCase()][0];
+          });
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
