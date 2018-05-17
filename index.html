@@ -71,7 +71,7 @@
       el: '#app',
       data: function () {
         return {
-          input: ''
+          input: (new URL(window.location.href).searchParams.get("input")) || ''
         };
       },
       computed: {
